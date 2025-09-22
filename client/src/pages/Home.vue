@@ -35,8 +35,6 @@ onMounted(async () => {
   arrList.value.push(...data)
 })
 
-// const sortedItems = computed(() => {})
-
 const sortedItems = computed(() => {
   // сортируем копию, чтобы не мутировать исходный массив
   const newArr = [...arrList.value]

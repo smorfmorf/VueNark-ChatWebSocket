@@ -10,17 +10,17 @@ interface Props {
 const { category, id, title, price, imageUrl } = defineProps<Props>()
 console.log('id: ', id)
 
-defineEmits(['eventDamp'])
+const emit = defineEmits(['eventDamp'])
 </script>
 
 <template>
   <article
     class="border border-gray-300 p-6 bg-slate-200 shadow-2xl hover:shadow-red-500 transition hover:scale-105 flex flex-col justify-between z-10"
   >
-    <!-- <img :src="`narko/${imageUrl}`" /> -->
-    <img
+    <img :src="`narko/${imageUrl}`" />
+    <!-- <img
       src="https://img1.akspic.ru/previews/1/6/0/6/7/176061/176061-yablochnyj_pejzazh-yabloko-illustracia-prirodnyj_landshaft-purpur-500x.jpg"
-    />
+    /> -->
     <p className="my-2">{{ title }}</p>
     <div className="flex items-center justify-between ">
       <div>
@@ -28,7 +28,12 @@ defineEmits(['eventDamp'])
         <b className="ml-auto">от {{ price }} руб.</b>
       </div>
 
-      <button className="p-2 bg-black text-white cursor-pointer active:scale-105">Купить</button>
+      <button
+        @click="emit('eventDamp', id)"
+        className="p-2 bg-black text-white cursor-pointer active:scale-105"
+      >
+        Купить
+      </button>
     </div>
   </article>
 </template>
