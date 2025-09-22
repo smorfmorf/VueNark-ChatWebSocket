@@ -20,9 +20,8 @@ defineEmits(['eventDamp'])
     <!-- <img :src="`narko/${imageUrl}`" /> -->
     <img
       src="https://img1.akspic.ru/previews/1/6/0/6/7/176061/176061-yablochnyj_pejzazh-yabloko-illustracia-prirodnyj_landshaft-purpur-500x.jpg"
-      alt=""
     />
-    <p className="my-2">title</p>
+    <p className="my-2">{{ title }}</p>
     <div className="flex items-center justify-between ">
       <div>
         <p className="text-gray-400">Цена:</p>

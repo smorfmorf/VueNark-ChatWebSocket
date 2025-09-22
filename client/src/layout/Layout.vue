@@ -5,11 +5,8 @@ import { inject, provide, ref, type Ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 const drawerOpen = inject<Ref<boolean>>('context')
-console.log('drawerOpen:eee ', drawerOpen?.value)
 const route = useRoute()
-console.log('✌️route --->', route)
 const router = useRouter()
-console.log('✌️router --->', router)
 </script>
 
 <template>

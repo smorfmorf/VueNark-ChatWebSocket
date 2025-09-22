@@ -7,6 +7,8 @@ const socket = io('http://localhost:4444')
 provide('socketIO', socket)
 
 const drawerOpen = ref<boolean>(false)
+
+//! Создание контекста
 provide('context', drawerOpen)
 
 const isModalOpen = ref(false)
@@ -40,7 +42,7 @@ watch(isModalOpen, async (newVal) => {
   <button @click="toggleModal">Модалка</button>
 
   <!-- типо когда Vue видит router-view он идет в router и смотрит по какому URL что рендерить  -->
-  <RouterView />
+  <router-view />
 
   <!-- Портал -->
   <transition name="fade" v-if="isModalOpen">
