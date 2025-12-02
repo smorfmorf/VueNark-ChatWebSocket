@@ -11,7 +11,7 @@ const server = createServer(app);
 
 const SocketIO = new Server(server, {
   cors: {
-    origin: "http://localhost:5173", // адрес фронтенда (Vue, Vite)
+    origin: ["http://localhost:5173", "http://localhost:5174"], // адрес фронтенда (Vue, Vite)
     methods: ["GET", "POST"],
     credentials: true,
   },
@@ -39,8 +39,11 @@ SocketIO.on("connection", (socket) => {
   // чтобы не висело постоянно
   socket.on("typing", (data) => {
     console.log("✌️data --->", data);
+    // Отправляет сообщение всем остальным клиентам
+    // SocketIO.emit("responseTyping", data);
+
     // Отправляет сообщение всем остальным клиентам, кроме отправителя.
-    SocketIO.emit("responseTyping", data, { broadcast: true });
+    socket.broadcast.emit("responseTyping", data);
   });
 
   socket.on("disconect", () => {

@@ -8,6 +8,7 @@ const router = useRouter()
 const scrollContainer = ref<HTMLElement | null>(null)
 const socket = inject<any>('socketIO')
 const isMyMessage = ref(false)
+const typingUser = ref('')
 let typingTimeout: number
 
 //*store - это объект, обернутый через reactive, то есть нет необходимости писать .value после геттеров, но, как и props в setup, мы не можем его деструктурировать
@@ -58,8 +59,10 @@ onMounted(() => {
   })
 
   socket.on('responseTyping', (data: any) => {
+    console.log('data: ', data)
     store.setStatusType(data.text)
-    isMyMessage.value = data.socketID === socket.id
+    // isMyMessage.value = data.socketID === socket.id
+    typingUser.value = data.text
 
     clearTimeout(typingTimeout)
     typingTimeout = setTimeout(() => {
@@ -151,7 +154,8 @@ watch(
           </template>
 
           <div class="absolute italic bottom-5">
-            <p>{{ !isMyMessage ? store.statusType : '' }}</p>
+            <!-- <p>{{ !isMyMessage ? store.statusType : '' }}</p> -->
+            <p>{{ typingUser ? store.statusType : '' }}</p>
           </div>
         </div>
       </div>
